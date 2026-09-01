@@ -2,7 +2,7 @@
 
 <div align="center">
 
-**`scrcpy` (Screen Copy) ke sath apne Android phone ko PC par 120 FPS me chalayein, mouse-keyboard se control karein aur phone ke camera ko DSLR-level HD Webcam banayein — Bina phone me koi app install kiye!**
+**`scrcpy` (Screen Copy) ke sath apne Android phone ko PC par 120 FPS me chalayein, mouse-keyboard se control karein, screen rotate karein aur phone ke camera ko DSLR-level HD Webcam banayein — Bina phone me koi app install kiye!**
 
 </div>
 
@@ -13,6 +13,7 @@
 `scrcpy` (by *Genymobile*) duniya ka sabse powerful aur fast open-source screen mirroring tool hai:
 - ⚡ **Zero Lag / Ultra Low Latency**: Sirf 35ms - 70ms ka delay (Gaming aur live typing ke liye best).
 - 🚀 **No App Required**: Phone me koi app/APK install nahi karni padti, yeh direct ADB se chalta hai.
+- 🔄 **Easy Rotation**: 1-Click me phone ko Horizontal (Landscape) ya Vertical (Portrait) me rotate karein.
 - 🔊 **Audio Forwarding**: Phone ka sound direct PC ke speaker/headphones me bajta hai (Android 11+).
 - 🔋 **Screen-Off Mode**: Phone ki physical screen band rahegi aur battery bachegi, lekin PC par phone chalta rahega!
 - 🎥 **HD Webcam Mode**: Phone ke high-quality back/front camera ko Zoom, Google Meet, Discord aur OBS ka webcam bana sakte hain.
@@ -40,10 +41,63 @@ sudo apt install scrcpy
 
 ---
 
+## 🔄 Phone aur Camera ko Rotate Kaise Karein? (Vertical vs Horizontal)
+
+Phone ke camera sensors natively sideways (horizontal) orientation me lage hote hain, isliye shuru me camera ya screen tedi dikh sakti hai. Isse theek karne ke **2 sabse aasan tarike** hain:
+
+### Method 1: Live Keyboard Shortcut (Sabse Fast & Aasan) ⭐
+Jab bhi `scrcpy` ya camera window khuli ho, keyboard par yeh dabayein:
+* 👉 **`Alt + r`** — Screen / Camera ko **90° Rotate** kar dega (Har baar dabane par orientation change hogi: Portrait ↔ Landscape).
+* 👉 **`Alt + Shift + r`** — Clockwise direction me 90° rotate karega.
+
+---
+
+### Method 2: Command me Direct Orientation Set Karna
+
+#### 🎥 1. Webcam Mode me Vertical (Portrait) Camera Chalana:
+```bash
+# Back Camera ko seedha (Vertical / Portrait) chalana:
+scrcpy --video-source=camera --orientation=90
+
+# Front Selfie Camera ko seedha (Vertical) chalana:
+scrcpy --video-source=camera --camera-facing=front --orientation=90
+```
+
+#### 🎥 2. Webcam Mode me Horizontal (Landscape / Widescreen) Chalana:
+```bash
+scrcpy --video-source=camera --camera-size=1920x1080 --orientation=0
+```
+
+#### 📱 3. Normal Phone Screen ko Force Landscape (Horizontal) me Lock Karna:
+Gaming ya video dekhne ke liye agar phone ko hamesha Horizontal rakhna ho:
+```bash
+# 0 = Portrait (Khada) | 1 = Landscape (Leta hua) | 2 = Reverse Portrait | 3 = Reverse Landscape
+scrcpy --lock-video-orientation=1
+```
+
+---
+
+### ⚙️ Method 3: ADB Command se Phone ka Auto-Rotate Control Karna:
+```bash
+# Auto-Rotate ON karna
+adb shell settings put system accelerometer_rotation 1
+
+# Auto-Rotate OFF (Lock) karna
+adb shell settings put system accelerometer_rotation 0
+
+# Phone ko Force Portrait karna
+adb shell settings put system user_rotation 0
+
+# Phone ko Force Landscape (Horizontal) karna
+adb shell settings put system user_rotation 1
+```
+
+---
+
 ## 🚨 OTG Mode: Mouse/Keyboard Lock & Release Master Guide
 
 > **⚠️ BOHOT ZAROORI (Must Read Before Using OTG Mode):**  
-> Jab aap `scrcpy --otg` chalate hain, toh PC aapke Mouse aur Keyboard ka **Hardware Control (HID)** phone ko de deta hai. Is wajah se mouse cursor PC screen se gayab ho jata hai aur phone ke andar chala jata hai. **USB nikalne ki zaroorat nahi hai!**
+> Jab aap `scrcpy --otg` chalate hain, toh PC aapke Mouse aur Keyboard ka **Hardware Level Control (HID)** phone ko de deta hai. Is wajah se cursor PC screen se gayab ho jata hai aur phone ke andar chala jata hai. **USB nikalne ki zaroorat nahi hai!**
 
 ### 🔓 Mouse & Keyboard ko Phone se Wapas PC me Kaise Layein?
 
@@ -125,19 +179,20 @@ scrcpy --turn-screen-off --stay-awake
 
 ### 4️⃣ Phone Camera ko PC Webcam Banana (DSLR Quality) 🎥
 
-Laptop ke kharab 720p webcam ko bhool jaiye! Apne phone ke 50MP/108MP camera ko PC ka live webcam banayein:
-
-#### Back Camera (Ultra HD Quality):
+#### Back Camera (Vertical / Portrait - Reels & Zoom):
 ```bash
-scrcpy --video-source=camera --camera-size=1920x1080 --camera-fps=60
+scrcpy --video-source=camera --orientation=90
+```
+
+#### Back Camera (Horizontal / Landscape - YouTube & OBS):
+```bash
+scrcpy --video-source=camera --camera-size=1920x1080 --orientation=0
 ```
 
 #### Front Selfie Camera:
 ```bash
-scrcpy --video-source=camera --camera-facing=front --camera-size=1920x1080
+scrcpy --video-source=camera --camera-facing=front --orientation=90
 ```
-> **Tip for OBS / Zoom / Google Meet:**  
-> PC me **OBS Studio** open karein > *Window Capture* me `scrcpy` window select karein > *Start Virtual Camera* dabayein. Ab Zoom ya Google Meet me aapka phone camera select ho jayega!
 
 ---
 
@@ -177,6 +232,7 @@ scrcpy --otg
 
 | Shortcut | Kaam |
 | :--- | :--- |
+| **`Alt + r`** | Screen ya Camera ko **90° Rotate** karna (Vertical ↔ Horizontal) |
 | **`Right Click`** | **Back Button** dabana |
 | **`Middle Click`** (Scroll Wheel) | **Home Button** dabana |
 | **`Alt + f`** | **Fullscreen** mode toggle karna |
@@ -185,7 +241,6 @@ scrcpy --otg
 | **`Alt + s`** | **Recent Apps** switcher kholna |
 | **`Alt + o`** | Phone ki **Physical Screen OFF** karna (PC par chalta rahega) |
 | **`Alt + p`** | Phone ki **Physical Screen wapas ON** karna |
-| **`Alt + r`** | Screen **Rotate** karna (Portrait / Landscape) |
 | **`Alt + n`** | **Notification Panel** neeche girana |
 | **`Alt + Shift + n`** | **Quick Settings** panel kholna |
 | **`Alt + v`** | PC ka copied text phone me **Paste** karna |
