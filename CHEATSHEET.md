@@ -1,6 +1,29 @@
-﻿# 📑 ADB Master Cheatsheet (Hinglish)
+﻿# 📑 ADB & scrcpy Master Cheatsheet (Hinglish)
 
-> **Sabhi zaroori ADB commands ka 1-page quick copy-paste reference.**
+> **Sabhi zaroori ADB & scrcpy commands aur keyboard keys ka 1-page quick reference.**
+
+---
+
+## 🎮 scrcpy & OTG Shortcuts Quick-Table
+
+### 🚨 OTG Mode (Mouse Lock se Bahar Aana):
+* **Mouse ko PC par wapas lana:** **`Left Alt`** key ko **1 baar press** karein.
+* **OTG Mode Exit karna:** Terminal me **`Ctrl + C`** dabayein.
+
+### 🖱️ Mouse & Keyboard Keys in OTG / Mirroring:
+| Button / Key | Phone me Action |
+| :--- | :--- |
+| **Right Click** | ⬅️ Back Button |
+| **Middle Click (Wheel)** | 🏠 Home Screen |
+| **Esc Key** | ⬅️ Back Button |
+| **Windows Key** | 🏠 Home Screen / Assistant |
+| **Alt + Tab** | 📑 Recent Apps / App Switcher |
+| **PrintScreen** | 📸 Screenshot capture |
+| **Ctrl + C / Ctrl + V** | Text Copy / Paste |
+| **Volume Up / Down Keys** | Phone ka Volume control |
+| **Sleep / Power Key** | Phone Screen Lock / Unlock |
+| **Alt + o** (In Mirroring) | Phone Screen OFF karna (PC ON rahega) |
+| **Alt + f** (In Mirroring) | Fullscreen Mode |
 
 ---
 
@@ -19,8 +42,7 @@ adb connect 192.168.1.XX:5555
 adb disconnect
 
 # ADB Server restart karna
-adb kill-server
-adb start-server
+adb kill-server && adb start-server
 ```
 
 ---

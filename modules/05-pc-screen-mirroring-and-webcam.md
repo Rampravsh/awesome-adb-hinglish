@@ -1,4 +1,4 @@
-﻿# 📖 Module 05: scrcpy Master Guide (Screen Mirroring & HD Webcam) 📱💻
+﻿# 📖 Module 05: scrcpy Master Guide (Screen Mirroring, OTG & HD Webcam) 📱💻
 
 <div align="center">
 
@@ -37,6 +37,45 @@ brew install scrcpy
 ```bash
 sudo apt install scrcpy
 ```
+
+---
+
+## 🚨 OTG Mode: Mouse/Keyboard Lock & Release Master Guide
+
+> **⚠️ BOHOT ZAROORI (Must Read Before Using OTG Mode):**  
+> Jab aap `scrcpy --otg` chalate hain, toh PC aapke Mouse aur Keyboard ka **Hardware Control (HID)** phone ko de deta hai. Is wajah se mouse cursor PC screen se gayab ho jata hai aur phone ke andar chala jata hai. **USB nikalne ki zaroorat nahi hai!**
+
+### 🔓 Mouse & Keyboard ko Phone se Wapas PC me Kaise Layein?
+
+| Action | Shortcut Key |
+| :--- | :--- |
+| **Mouse ko Phone se Release karke PC par lana** | **`Left Alt`** key ko **1 baar press** karein (Mouse wapas PC par aa jayega) |
+| **Mouse ko wapas Phone ke andar bhejna** | `scrcpy` terminal window par click karein |
+| **OTG Mode ko poora Band (Exit) karna** | Terminal me **`Ctrl + C`** dabayein ya `Alt + F4` |
+
+---
+
+### 🎮 OTG Mode me Kaunsi Key Kya Kaam Karti Hai? (Full Key Mapping)
+
+#### 🖱️ Mouse Buttons ka Kaam:
+* **Left Click**: Normal Touch / Tap karna.
+* **Right Click**: ⬅️ **Back Button** dabana.
+* **Middle Click (Scroll Wheel Click)**: 🏠 **Home Button** dabana (Home screen par jana).
+* **Mouse Scroll Up / Down**: Page ko upar-neeche scroll karna.
+* **Mouse Side Buttons (Agar Gaming Mouse ho)**: Recent Apps / App Switcher kholna.
+
+#### ⌨️ Keyboard Keys ka Kaam:
+| Keyboard Key | Phone me Kya Hoga? |
+| :--- | :--- |
+| **`Esc` (Escape)** | ⬅️ **Back Button** dabana |
+| **`Windows` Key (Super Key)** | 🏠 **Home Screen** par jana ya Google Assistant kholna |
+| **`Alt + Tab`** | 📑 **Recent Apps (App Switcher)** kholna |
+| **`PrintScreen`** | 📸 Phone me **Screenshot** lena |
+| **`Ctrl + C` / `Ctrl + V`** | Text **Copy / Paste** karna |
+| **`Ctrl + A`** | Saara text select karna |
+| **`Volume Up / Down / Mute` Keys** | Phone ki **Aawaz (Volume)** kam/zyada karna |
+| **`Play / Pause / Next / Prev` Keys** | Phone ka **Music / Video** control karna |
+| **`Sleep` / `Power` Key** | Phone ki Screen ko **Lock / Unlock** karna |
 
 ---
 
@@ -126,25 +165,23 @@ scrcpy --record=my_gameplay.mp4
 
 ---
 
-### 7️⃣ OTG Mode (Sirf Mouse & Keyboard Share Karna, No Video)
-Agar aapko PC par screen nahi dekhni, sirf PC ke mouse aur keyboard se phone ko control karna hai:
+### 7️⃣ OTG Mode Command (Mouse & Keyboard Control)
 ```bash
 scrcpy --otg
 ```
+*(Mouse release karne ke liye **`Left Alt`** dabayein).*
 
 ---
 
-## ⌨️ Super-Fast Keyboard Shortcuts Cheat-Sheet
-
-`scrcpy` window open hone par `Alt` key (ya `MOD` key) ke sath yeh shortcuts use karein:
+## ⌨️ Screen Mirroring Mode ke Shortcuts (Window Open hone par)
 
 | Shortcut | Kaam |
 | :--- | :--- |
 | **`Right Click`** | **Back Button** dabana |
-| **`Middle Click`** (Scroll Wheel) | **Home Screen** par jana |
+| **`Middle Click`** (Scroll Wheel) | **Home Button** dabana |
 | **`Alt + f`** | **Fullscreen** mode toggle karna |
-| **`Alt + h`** | **Home Button** |
-| **`Alt + b`** | **Back Button** |
+| **`Alt + h`** | **Home Screen** par jana |
+| **`Alt + b`** | **Back Button** dabana |
 | **`Alt + s`** | **Recent Apps** switcher kholna |
 | **`Alt + o`** | Phone ki **Physical Screen OFF** karna (PC par chalta rahega) |
 | **`Alt + p`** | Phone ki **Physical Screen wapas ON** karna |
