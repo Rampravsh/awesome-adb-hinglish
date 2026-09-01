@@ -10,10 +10,10 @@
 
 <br/>
 
-**Android Debug Bridge (ADB) ko aasan Hinglish me seekhein — Zero se Hero tak!**  
-*Visual Diagrams, Real-World Hacks, 1-Click Scripts aur Complete Cheatsheet ke sath.*
+**Android Debug Bridge (ADB) & scrcpy Master Guide in Hinglish — Zero se Hero tak!**  
+*Visual Diagrams, In-Depth scrcpy Mastery, Real-World Hacks, 1-Click Scripts & Cheatsheet.*
 
-[🚀 Quickstart](#-1-minute-quickstart-installation) • [📊 Command Categories](#-adb-commands-ki-7-categories) • [🪄 1-Click Scripts](#-ready-to-use-1-click-scripts) • [📑 Cheatsheet](CHEATSHEET.md) • [🤝 Contribute](CONTRIBUTING.md)
+[🚀 Quickstart](#-1-minute-quickstart-installation) • [📊 Command Categories](#-adb-commands-ki-7-categories) • [🎮 scrcpy Mastery](#-scrcpy-master-guide-8-in-depth-chapters) • [🪄 1-Click Scripts](#-ready-to-use-1-click-scripts) • [📑 Cheatsheet](CHEATSHEET.md) • [🤝 Contribute](CONTRIBUTING.md)
 
 </div>
 
@@ -21,28 +21,31 @@
 
 ## 🌟 Yeh Repo Kyun Khaas Hai?
 
-Zyadatar documentation dry aur English jargon se bhari hoti hai. Yeh guide khas Indian developers, students aur Android enthusiasts ke liye design ki gayi hai:
+Zyadatar documentation dry aur English jargon se bhari hoti hai. Yeh guide khas Indian developers, students aur Android enthusiasts ke liye banayi gayi hai:
 - 💡 **Aasan Hinglish Bhasha** — Koi complex technical baatein nahi, seedha practical learning.
+- 🎮 **Dedicated scrcpy Master Guide** — 8 In-Depth chapters for 120FPS gaming, HD webcam, OTG control, audio stream & rotation.
 - 📊 **Flowcharts & Visual Diagrams** — Har workflow ke liye Mermaid diagrams.
-- ⚡ **1-Click Automation Scripts** — Bloatware remover aur Wireless connector tools.
-- 🎯 **Real World Hacks** — Screen broken data backup, webcam mode, fake battery prank, etc.
+- ⚡ **1-Click Automation Scripts** — Bloatware remover, scrcpy hub aur wireless connector.
+- 🎯 **Real World Hacks** — Screen broken data backup, fake battery prank, camera webcam setup.
 
 ---
 
-## 🗺️ Architecture: ADB Kaise Kaam Karta Hai?
+## 🗺️ Architecture: ADB & scrcpy Kaise Kaam Karte Hain?
 
 ```mermaid
 graph LR
-    subgraph PC ["💻 Computer / Laptop"]
-        Client["ADB Client (Terminal / VS Code)"]
-        Server["ADB Server (Background Process :5037)"]
-        Client <-->|"Commands"| Server
+    subgraph PC ["💻 Computer / PC"]
+        Client["ADB Client & scrcpy"]
+        Server["ADB Server (:5037)"]
+        Client <--> Server
     end
 
     subgraph Phone ["📱 Android Device"]
-        Daemon["ADBD (ADB Daemon : Shell User)"]
-        OS["Android Linux Kernel & Hardware"]
-        Daemon <-->|"System APIs & Control"| OS
+        Daemon["ADBD Daemon (Shell User)"]
+        ScrcpyServer["scrcpy-server.jar (In-Memory)"]
+        Hardware["Camera / Display / Sensors / Audio"]
+        Daemon <--> Hardware
+        ScrcpyServer <--> Hardware
     end
 
     Server <==>|"USB Cable ya Wi-Fi Network"| Daemon
@@ -53,18 +56,18 @@ graph LR
 ## ⚡ 1-Minute Quickstart (Installation)
 
 ### Windows (Bina Android Studio ke - Sirf ~12 MB)
-PowerShell me sirf yeh ek command chalayein:
+PowerShell me run karein:
 ```powershell
-winget install Google.PlatformTools
+winget install Google.PlatformTools Genymobile.scrcpy
 ```
 
 ### macOS / Linux
 ```bash
 # Mac (Homebrew)
-brew install android-platform-tools
+brew install android-platform-tools scrcpy
 
 # Ubuntu / Debian
-sudo apt install adb fastboot
+sudo apt update && sudo apt install adb fastboot scrcpy
 ```
 
 ### Phone Setup:
@@ -75,6 +78,36 @@ sudo apt install adb fastboot
    ```bash
    adb devices
    ```
+
+---
+
+## 🎮 scrcpy Master Guide (8 In-Depth Chapters)
+
+scrcpy ko master karne ke liye dedicated modular guides:
+
+```mermaid
+graph TD
+    S["🎮 scrcpy Master Guide"]
+    S --> CH1["📘 01. Overview & Setup Architecture"]
+    S --> CH2["⚡ 02. 120 FPS & Display Performance"]
+    S --> CH3["🔄 03. Rotation & Orientation Mastery"]
+    S --> CH4["⌨️ 04. OTG Mouse & Keyboard Escape Guide"]
+    S --> CH5["🎥 05. DSLR HD Webcam & OBS Setup"]
+    S --> CH6["🔊 06. Audio Forwarding & MP4 Recording"]
+    S --> CH7["📡 07. Wireless & Multi-Device Control"]
+    S --> CH8["📑 08. Shortcuts & Drag-Drop Cheatsheet"]
+```
+
+| Chapter | Topic | Link |
+| :--- | :--- | :--- |
+| **01** | **scrcpy Overview & Architecture** (No-app injection, zero latency) | [📖 Chapter 01](scrcpy-guide/01-scrcpy-overview-and-setup.md) |
+| **02** | **Display & 120 FPS Gaming** (Bitrate, codecs, resolution scaling) | [📖 Chapter 02](scrcpy-guide/02-display-and-performance-tuning.md) |
+| **03** | **Rotation & Orientation** (`Alt+r`, vertical portrait vs landscape) | [📖 Chapter 03](scrcpy-guide/03-rotation-and-orientation-mastery.md) |
+| **04** | **OTG Mode Masterclass** (Mouse release with `Left Alt`, full keymap) | [📖 Chapter 04](scrcpy-guide/04-otg-mode-mouse-and-keyboard.md) |
+| **05** | **DSLR HD Webcam Mode** (Back/Front camera for Zoom, Meet, OBS) | [📖 Chapter 05](scrcpy-guide/05-hd-webcam-and-camera-streaming.md) |
+| **06** | **Audio Forwarding & Recording** (Internal sound stream, direct MP4) | [📖 Chapter 06](scrcpy-guide/06-audio-forwarding-and-recording.md) |
+| **07** | **Wireless & Multi-Device** (Wi-Fi streaming, 2+ phones simultaneously) | [📖 Chapter 07](scrcpy-guide/07-wireless-scrcpy-and-multi-device.md) |
+| **08** | **Shortcuts & Gestures** (Complete keyboard shortcuts & drag-drop) | [📖 Chapter 08](scrcpy-guide/08-shortcuts-and-drag-drop-cheatsheet.md) |
 
 ---
 
@@ -172,11 +205,15 @@ graph TD
 
 Is repository ke [`scripts/`](scripts/) folder me ready-made tools hain:
 
-1. **`scripts/wireless_connect.bat`**  
-   Sirf double click karein — yeh automatically aapke phone ka Wi-Fi IP detect karke wireless connect kar dega!
-2. **`scripts/universal_debloater.bat`**  
+1. **`scripts/start_scrcpy_hub.bat`** 🎮  
+   Interactive Launcher Menu: Gaming mode, HD Webcam, Battery saver, Wireless mirroring aur screen recording ko 1-click me launch karein.
+2. **`scripts/phone_as_webcam.bat`** 🎥  
+   1-Click me phone camera ko PC webcam banata hai with Landscape aur Portrait rotation options.
+3. **`scripts/universal_debloater.bat`** 🗑️  
    Xiaomi, Realme, Infinix, Samsung ke faltu ads aur bloatware ko safe tarike se disable karta hai.
-3. **`scripts/take_screenshot.bat`**  
+4. **`scripts/wireless_connect.bat`** 📡  
+   Automatically aapke phone ka Wi-Fi IP detect karke wireless connect karta hai.
+5. **`scripts/take_screenshot.bat`** 📸  
    1-Click me phone ki screen capture karke aapke PC Desktop par save karta hai.
 
 ---
